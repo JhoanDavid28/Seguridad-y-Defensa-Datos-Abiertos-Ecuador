@@ -18,14 +18,15 @@ La seguridad pública en Ecuador enfrenta desafíos significativos relacionados 
 Desarrollar un sistema de análisis de Big Data que utilice información del Ministerio del Interior de Ecuador para mejorar la comprensión y gestión de la seguridad pública.
 
 ### Objetivos específico
-Identificar patrones delictivos
-### Desarrollar modelos predictivos (Utilizar modelos predictivos para anticipar posibles eventos peligrosos y prever áreas con riesgos elevados. Esto podría incluir la predicción de conflictos o actividades delictivas basadas en patrones históricos y actuales)
-Evaluar la efectividad policial ( analizar la relación entre la cantidad de personas detenidas y la reducción de eventos peligrosos para evaluar la efectividad de las acciones policiales)
-### Generar  Informes y Visualizaciones
+- **Identificar patrones delictivos**
+- **Desarrollar modelos predictivos**: (Utilizar modelos predictivos para anticipar posibles eventos peligrosos y prever áreas con riesgos elevados. Esto podría incluir la predicción de conflictos o actividades delictivas basadas en patrones históricos y actuales)
+- **Evaluar la efectividad policial**: ( analizar la relación entre la cantidad de personas detenidas y la reducción de eventos peligrosos para evaluar la efectividad de las acciones policiales)
+- **Generar  Informes y Visualizaciones**
 
 ## Fuentes de Información
 
 Las fuentes de información son obtenidas de los datos que nos proporciona datosabiertos.gob.ec de la categoría seguridad y defensa proporcionados por el instituto geográfico militar, instituto oceanográfico y antártico de la armada, ministerio del interior y de la secretaría de gestión de riesgos,  en diferentes formatos como csv, json, xlsx, la información obtenida refiere a persona detenidas/Aprehendidas, armas ilícitas, personas desaparecidas, estas bases de datos son libres y gratuitos.
+
 ---
 TABLAS
 ---
