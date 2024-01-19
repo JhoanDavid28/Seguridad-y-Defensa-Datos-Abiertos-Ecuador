@@ -24,12 +24,12 @@ def cmd_detenidos_aprendidos(message):
     bot.register_next_step_handler(msg, handle_detenidos_aprehendidos)
 
 def handle_detenidos_aprehendidos(message):
-    if message != "ubicacion":
+    if message.text == "ubicacion":
+        handle_ubicacion(message)     
+    else: 
         markup = ForceReply()
         msg = bot.send_message(message.chat.id, "ERROR: Ingresa otro comando", reply_markup=markup) 
-        bot.register_next_step_handler(msg, handle_detenidos_aprehendidos)      
-    else: 
-        handle_ubicacion(message)
+        bot.register_next_step_handler(msg, handle_detenidos_aprehendidos) 
         
 
 def handle_ubicacion(message):
@@ -38,26 +38,20 @@ def handle_ubicacion(message):
     # Lógica para /ubicacion dentro de /detenidos_aprehendidos
     bot.send_message(message.chat.id, "Generando gráfico de ubicación...")
 
-    # df_detenidos_aprehendidos está disponible
-    if 'df_detenidos_aprehendidos' in locals() and not df_detenidos_aprehendidos.empty:
-        # Crear el gráfico de ubicación usando Seaborn
-        plt.figure(figsize=(10, 6))
-        sns.scatterplot(x='nombre_provincia', y='nombre_canton', data=df_detenidos_aprehendidos)
-        plt.title('Gráfico de Ubicación de Personas Detenidas/Aprehendidas')
-        plt.xlabel('Provincia')
-        plt.ylabel('Cantón')
-        plt.tight_layout()
-
-        # Guardar el gráfico como una imagen
-        plt.savefig('ubicacion_detenidos_aprehendidos.png')
-        plt.close()
-
-        # Enviar la imagen al usuario
-        with open('ubicacion_detenidos_aprehendidos.png', 'rb') as photo:
-            bot.send_photo(message.chat.id, photo, caption='Gráfico de Ubicación de Personas Detenidas/Aprehendidas')
-
-    else:
-        bot.send_message(message.chat.id, "No hay datos disponibles para generar el gráfico de ubicación.")
+    # Crear el gráfico de ubicación usando Seaborn
+    # Crear un histograma de provincias
+    plt.figure(figsize=(20, 5))
+    sns.histplot(df_detenidos_aprehendidos['nombre_provincia'],   orientation='vertical', color='skyblue')
+    plt.title('Distribución de Provincias de Personas Detenidas/Aprehendidas')
+    plt.xlabel('Provincia')
+    plt.ylabel('Frecuencia')
+    
+    # Guardar el gráfico como una imagen
+    plt.savefig('ubicacion_detenidos_aprehendidos.png')
+    plt.close()
+    # Enviar la imagen al usuario
+    with open('ubicacion_detenidos_aprehendidos.png', 'rb') as photo:
+        bot.send_photo(message.chat.id, photo, caption='Gráfico de Ubicación de Personas Detenidas/Aprehendidas')
 
 
 
@@ -94,8 +88,6 @@ def recibir_mensajes():
 
 # main
 if __name__ == '__main__':
-    # cargar y limpiar datos
-    cargar_datos()
     # conficuracion de comandos disponibles
     bot.set_my_commands([
         telebot.types.BotCommand("/start", "Da la bienvenida"),
